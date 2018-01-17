@@ -68,6 +68,7 @@ public class random {
 			writeFile("Tank_Temp_2", 1000, false);
 			writeFile("Battery", 100, false);
 			writeFile("Thrust", 1000, false);
+			writeFile("SeqStage",11,true);
 
 			try {
 				Thread.sleep(100);

@@ -3,9 +3,10 @@ from flask_restful import Resource, Api
 import time
 import requests
 import threading
+from flask_cors import CORS
 
 
-files = {"Val150":None, "Val151":None, "Val250":None, "Val251":None, "Val252":None, "Val253":None, "Val350":None, "Val351":None, "Val352":None, "Val353":None, "T290":None, "T291":None, "T292":None, "T293":None, "T390":None, "T391":None, "T392":None, "T393":None, "Tank_Fuel_1":None, "Tank_Fuel_2":None, "Tank_Temp_1":None, "Tank_Temp_2":None, "Battery":None, "Thrust":None, "E10":None}
+files = {"Val150":None, "Val151":None, "Val250":None, "Val251":None, "Val252":None, "Val253":None, "Val350":None, "Val351":None, "Val352":None, "Val353":None, "T290":None, "T291":None, "T292":None, "T293":None, "T390":None, "T391":None, "T392":None, "T393":None, "Tank_Fuel_1":None, "Tank_Fuel_2":None, "Tank_Temp_1":None, "Tank_Temp_2":None, "Battery":None, "Thrust":None, "E10":None, "SeqStage":None}
 for i in range(9):
 	files["E0" + str(i + 1)] = None
 for i in range(9):
@@ -18,7 +19,9 @@ for i in range(14):
 
 fileText = {"Val150":"", "Val151":"", "Val250":"", "Val251":"", "Val252":"", "Val253":"", "Val350":"", "Val351":"", "Val352":"", "Val353":"", "T290":"", "T291":"", "T292":"", "T293":"", "T390":"", "T391":"", "T392":"", "T393":""}
 
+
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 
