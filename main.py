@@ -17,7 +17,7 @@ for i in range(14):
 	files["PT" + str(i + 1)] = None
 
 
-fileText = {"Val150":"", "Val151":"", "Val250":"", "Val251":"", "Val252":"", "Val253":"", "Val350":"", "Val351":"", "Val352":"", "Val353":"", "T290":"", "T291":"", "T292":"", "T293":"", "T390":"", "T391":"", "T392":"", "T393":""}
+fileText = {}
 
 
 app = Flask(__name__)
@@ -71,7 +71,7 @@ if __name__ == '__main__':
 
 	activate()
 
-	app.run(debug=True)
+	app.run(host='0.0.0.0')
 
 
 
