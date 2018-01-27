@@ -19,7 +19,7 @@ public class random {
 
 		// total number of each item
 		final int ERRORS = 10;
-		final int WARNINGS = 16;
+		final int WARNINGS = 10;
 		final int PT = 14;
 
 		while (true) {
@@ -28,7 +28,7 @@ public class random {
 			int digits = 0;
 
 			// random readings for the errors and warnings
-			for (int i = 1; i <= ERRORS; i++) {
+			for (int i = 1; i <= 2; i++) {
 				int emptyN = (int) Math.ceil(Math.log10(ERRORS)) - (int) Math.ceil(Math.log10(i));
 				emptyN += Math.log10(ERRORS) % 1 == 0 ? 1 : 0;
 				emptyN -= Math.log10(i) % 1 == 0 ? 1 : 0;
@@ -36,7 +36,7 @@ public class random {
 				String pathname = "E" + empty + i;
 				writeFile(pathname, 2, true);
 			}
-			for (int i = 1; i <= WARNINGS; i++) {
+			for (int i = 1; i <= 8; i++) {
 				int emptyN = (int) Math.ceil(Math.log10(WARNINGS)) - (int) Math.ceil(Math.log10(i));
 				emptyN += Math.log10(WARNINGS) % 1 == 0 ? 1 : 0;
 				emptyN -= Math.log10(i) % 1 == 0 ? 1 : 0;

@@ -6,13 +6,11 @@ import threading
 from flask_cors import CORS
 
 
-files = {"Val150":None, "Val151":None, "Val250":None, "Val251":None, "Val252":None, "Val253":None, "Val350":None, "Val351":None, "Val352":None, "Val353":None, "T290":None, "T291":None, "T292":None, "T293":None, "T390":None, "T391":None, "T392":None, "T393":None, "Tank_Fuel_1":None, "Tank_Fuel_2":None, "Tank_Temp_1":None, "Tank_Temp_2":None, "Battery":None, "Thrust":None, "E10":None, "SeqStage":None}
-for i in range(9):
+files = {"Val150":None, "Val151":None, "Val250":None, "Val251":None, "Val252":None, "Val253":None, "Val350":None, "Val351":None, "Val352":None, "Val353":None, "T290":None, "T291":None, "T292":None, "T293":None, "T390":None, "T391":None, "T392":None, "T393":None, "Tank_Fuel_1":None, "Tank_Fuel_2":None, "Tank_Temp_1":None, "Tank_Temp_2":None, "Battery":None, "Thrust":None, "SeqStage":None}
+for i in range(2):
 	files["E0" + str(i + 1)] = None
-for i in range(9):
+for i in range(8):
 	files["W0" + str(i + 1)] = None
-for i in range(7):
-	files["W" + str(i + 10)] = None
 for i in range(14):
 	files["PT" + str(i + 1)] = None
 
