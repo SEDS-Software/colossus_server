@@ -94,7 +94,7 @@ public class random {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 			double random = Math.random() * range;
 			String value = integer ? Integer.toString((int) random) : Double.toString(random);
-			writer.write(value);
+			writer.write(value + "\n");
 			writer.close();
 		} catch (IOException e) {
 			System.out.println("NOOOOOO");

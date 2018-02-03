@@ -39,8 +39,9 @@ def activate():
 	def updateData():
 		while True:
 			for key, value in files.items():
-				value.seek(0);
-				fileText[key] = value.read()
+				value.seek(0)
+				val = value.read()
+				fileText[key] = val[:len(val) - 1]
 			time.sleep(refreshRate)
 	thread = threading.Thread(target=updateData)
 	thread.start()
