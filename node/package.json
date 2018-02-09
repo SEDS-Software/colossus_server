@@ -4,6 +4,7 @@
   "description": "node version of the api",
   "main": "index.js",
   "scripts": {
+	"run": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -12,5 +13,12 @@
     "api"
   ],
   "author": "cyficowley",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^4.0.0"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^3.0.3",
+    "utf-8-validate": "^4.0.0"
+  }
 }
