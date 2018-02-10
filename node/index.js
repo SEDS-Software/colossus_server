@@ -54,7 +54,7 @@ ws.broadcast = function broadcast(data) {
 };
 
 
-setInterval(() => {http.get('http://127.0.0.1:5000/', (res) => {
+setInterval(() => {http.get('http://128.54.239.86:5000/', (res) => {
 	  const { statusCode } = res;
 
 	  let error;
