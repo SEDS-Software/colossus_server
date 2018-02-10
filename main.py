@@ -74,7 +74,10 @@ api.add_resource(HelloWorld, '/')
 
 if __name__ == '__main__':
 	for key, value in files.items():
-		files[key] = open(key,"r")
+		try:
+			files[key] = open(key,"r")
+		except:
+			print("missing file")
 
 	activate()
 
