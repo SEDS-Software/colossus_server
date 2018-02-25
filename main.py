@@ -34,7 +34,6 @@ api = Api(app)
 refreshRate = 1 #seconds
 
 
-# @app.before_first_request
 def activate():
 	def updateData():
 		while True:
@@ -48,29 +47,13 @@ def activate():
 
 
 
-class HelloWorld(Resource):
+class HostsCrap(Resource):
 	def get(self):
 		return fileText
 
 
-api.add_resource(HelloWorld, '/')
+api.add_resource(HostsCrap, '/')
 
-
-# def start_runner():
-# 	def start_loop():
-# 		not_started = True
-# 		while not_started:
-# 			print('in start loop')
-# 			try:
-# 				r = requests.get('http://127.0.0.1:5000/')
-# 				if r.status_code == 200:
-# 					print("server started")
-# 					not_started = False
-# 			except Exception as e:
-# 				print("server not yet started")
-# 			time.sleep(2)
-# 	thread = threading.Thread(target=start_loop)
-# 	thread.start()
 
 if __name__ == '__main__':
 	for key, value in files.items():
