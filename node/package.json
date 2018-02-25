@@ -15,6 +15,7 @@
   "author": "cyficowley",
   "license": "ISC",
   "dependencies": {
+    "ftp": "^0.3.10",
     "ws": "^4.0.0"
   },
   "optionalDependencies": {
