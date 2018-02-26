@@ -4,26 +4,50 @@ import time
 import requests
 import threading
 from flask_cors import CORS
+import PyQStationConnect.PyQStationConnect as Qstation
+import numpy as np
+import pyqtgraph as pg
+from pyqtgraph.Qt import QtCore
+from ctypes import*
+import ctypes
 
 
-files = {"Val150":None, "Val151":None, "Val250":None, "Val251":None, "Val252":None, "Val253":None, "Val350":None, "Val351":None, "Val352":None, "Val353":None, "T290":None, "T291":None, "T292":None, "T293":None, "T390":None, "T391":None, "T392":None, "T393":None, "Tank_Temp_1":None, "Tank_Temp_2":None, "Battery":None, "Thrust":None, "SeqStage":None}
 
-# Not yet mapped, uncomment when mapped
-# for i in range(2):
-# 	files["E0" + str(i + 1)] = None
-# for i in range(8):
-# 	files["W0" + str(i + 1)] = None
-# files["Tank_Fuel_1"]=None
-# files["Tank_Fuel_2"]=None
+GINSDll = ctypes.cdll.LoadLibrary("giutility.dll")
+
+labels = [];
+values = [];
+conn = [Qstation.ConnectGIns(0), Qstation.ConnectGIns(1), Qstation.ConnectGIns(3)];
+buffers = [];
+value_map = {};
+
+for c in conn:
+	c.init_connection("192.168.1.28");
+	c.read_sample_rate()
+	self=c;
+	for i in range(int(c.read_channel_count())):
+		GINSDll._CD_eGateHighSpeedPort_GetDeviceInfo(self.HCONNECTION.value,self.Channel_InfoName,i,None,self.char)
+		label=self.char.value.decode('UTF-8');
+		if (label!='Timestamp'):
+			labels.append(self.char.value.decode('UTF-8'));
+	buffers.append(c.yield_buffer());
 
 
-for i in range(14):
-	files["PT" + str(i + 1)] = None
+def update_values():
+	values = [];
+	for buffer in buffers:
+			data = [];
+			while(len(data) == 0):
+					data = next(buffer);
+			## Get mean over all the rows
+			data = np.array(data);
+			data = np.mean(data, axis=0);
+			data = np.delete(data, 0);
+			for d in data:
+					values.append(d);
+	value_map = dict(zip(labels, values))
 
-del(files["PT8"])
 
-
-fileText = {}
 
 
 app = Flask(__name__)
@@ -37,10 +61,7 @@ refreshRate = 1 #seconds
 def activate():
 	def updateData():
 		while True:
-			for key, value in files.items():
-				value.seek(0)
-				val = value.read()
-				fileText[key] = val[:len(val) - 1]
+			update_values()
 			time.sleep(refreshRate)
 	thread = threading.Thread(target=updateData)
 	thread.start()
@@ -49,22 +70,28 @@ def activate():
 
 class HostsCrap(Resource):
 	def get(self):
-		return fileText
+		return value_map
 
 
 api.add_resource(HostsCrap, '/')
 
 
 if __name__ == '__main__':
-	for key, value in files.items():
-		try:
-			files[key] = open(key,"r")
-		except:
-			print("missing file")
 
 	activate()
 
 	app.run(host='0.0.0.0')
+
+
+
+
+#GAV STUFF
+
+
+
+
+
+
 
 
 
