@@ -22,17 +22,24 @@ global value_map
 value_map = {}
 
 def setup():
-	conn = [Qstation.ConnectGIns(0), Qstation.ConnectGIns(1), Qstation.ConnectGIns(3)];
-	for c in conn:
-		c.init_connection("192.168.1.28")
-		c.read_sample_rate()
-		self=c;
-		for i in range(int(c.read_channel_count())):
-			GINSDll._CD_eGateHighSpeedPort_GetDeviceInfo(self.HCONNECTION.value,self.Channel_InfoName,i,None,self.char)
-			label=self.char.value.decode('UTF-8')
-			if (label!='Timestamp'):
-				labels.append(self.char.value.decode('UTF-8'))
-		buffers.append(c.yield_buffer())
+	try:
+		conn = [Qstation.ConnectGIns(0), Qstation.ConnectGIns(1), Qstation.ConnectGIns(3)];
+		for c in conn:
+			c.init_connection("192.168.1.28")
+			c.read_sample_rate()
+			self=c;
+			if(c.read_channel_count() != ""):
+				for i in range(int(c.read_channel_count())):
+					GINSDll._CD_eGateHighSpeedPort_GetDeviceInfo(self.HCONNECTION.value,self.Channel_InfoName,i,None,self.char)
+					label=self.char.value.decode('UTF-8')
+					if (label!='Timestamp'):
+						labels.append(self.char.value.decode('UTF-8'))
+				buffers.append(c.yield_buffer())
+				print(buffers)
+	except:
+		sleep(20)
+		print("RETRY")
+		setup()
 
 setup()
 
@@ -56,6 +63,7 @@ def update_values():
 	except StopIteration:
 		print("why are you running htis")
 		buffers.clear()
+		time.sleep(1)
 		print("REDID IT")
 		setup()
 
@@ -66,7 +74,7 @@ CORS(app)
 api = Api(app)
 
 
-refreshRate = 1 #seconds
+refreshRate = .2 #seconds
 
 
 def activate():
