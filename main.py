@@ -37,7 +37,7 @@ def setup():
 				buffers.append(c.yield_buffer())
 				print(buffers)
 	except:
-		sleep(20)
+		time.sleep(20)
 		print("RETRY")
 		setup()
 
