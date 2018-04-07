@@ -2,6 +2,9 @@
 
 This gets the data from the DAQ to all the devices that are trying to see it.  It is meant to be used with the [Colossus_website](https://github.com/cyficowley/colossus_website/).
 
+
+##### CURRENTLY THE SERVER BREAKS AND HAS TO BE RESTARTED EVERY TIME GANTNER REBOOTS
+
 # run
 
 Double click the colossus server icon on the desktop or run the python file `colossus_server/main.py` from the SEDS laptop. It establishes an ftp link with the DAQ and runs a flask api where the data can be requested from.  This requires a windows laptop because it has some weird dlls.
