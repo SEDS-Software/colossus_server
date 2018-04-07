@@ -4,7 +4,7 @@ from ctypes import*
 import ctypes
 import numpy as np
 # Load DLL into memory, take care to have the corresponding dll to the computer operating system
-GINSDll = ctypes.cdll.LoadLibrary("giutility.dll")
+GINSDll = ctypes.cdll.LoadLibrary("C:/Users/Colossus_Laptop/colossus_server/giutility.dll")
 
 #function prototypes
 GINSDll._CD_eGateHighSpeedPort_Init.argtypes = [c_char_p,c_int,c_int,c_int,POINTER(c_int),POINTER(c_int)]
