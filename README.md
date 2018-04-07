@@ -4,7 +4,7 @@ This gets the data from the DAQ to all the devices that are trying to see it.  I
 
 # run
 
-Run the python file `colossus_server/main.py` from the SEDS laptop. It establishes an ftp link with the DAQ and runs a flask api where the data can be requested from.  This requires a windows laptop because it has some weird dlls.
+Double click the colossus server icon on the desktop or run the python file `colossus_server/main.py` from the SEDS laptop. It establishes an ftp link with the DAQ and runs a flask api where the data can be requested from.  This requires a windows laptop because it has some weird dlls.
 
 Then plug in the raspberry pi which will automatically start the websocket and start pushing the data to all connected devices on port 192.168.100:8080. (the actual ip address could possibly change but the port won't)
 
