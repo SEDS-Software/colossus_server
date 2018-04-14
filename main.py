@@ -23,11 +23,11 @@ value_map = {}
 
 def setup():
     try:
-        conn = [Qstation.ConnectGIns()];
+        conn = [Qstation.ConnectGIns(0),Qstation.ConnectGIns(1),Qstation.ConnectGIns(2)]
         for c in conn:
             c.init_connection("192.168.1.28")
             c.read_sample_rate()
-            self=c;
+            self=c
             if(c.read_channel_count() != ""):
                 for i in range(int(c.read_channel_count())):
                     GINSDll._CD_eGateHighSpeedPort_GetDeviceInfo(self.HCONNECTION.value,self.Channel_InfoName,i,None,self.char)
@@ -36,6 +36,7 @@ def setup():
                         labels.append(self.char.value.decode('UTF-8'))
                 buffers.append(c.yield_buffer())
                 print(buffers)
+
     except Exception as e:
         print(e)
         time.sleep(20)
@@ -48,7 +49,7 @@ def update_values():
     values = []
     try:
         for buffer in buffers:
-                data = [];
+                data = []
                 while(len(data) == 0):
                         data = next(buffer)
                         
@@ -60,6 +61,7 @@ def update_values():
                         values.append(d)
         global value_map
         value_map = dict(zip(labels, values))
+        print(value_map)
     except StopIteration:
         print("why are you running htis")
         buffers.clear()
@@ -94,6 +96,7 @@ class HostsCrap(Resource):
 
 
 api.add_resource(HostsCrap, '/')
+update_values()
 
 
 if __name__ == '__main__':

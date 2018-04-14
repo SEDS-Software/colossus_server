@@ -18,7 +18,7 @@ GINSDll._CD_eGateHighSpeedPort_Close.argtypes = [c_int, c_int]
 
 
 class ConnectGIns():
-    def __init__(self):
+    def __init__(self, buffer):
         """"  parameters for Init connection """
         self.controllerIP=0#controllerIP.encode('UTF-8')
         self.timeout=5
@@ -31,7 +31,7 @@ class ConnectGIns():
         self.HCLIENT=c_int(-1)
         self.HCONNECTION=c_int(-1)
         #parameters for Init buffer
-        self.bufferindex=0
+        self.bufferindex=buffer
         self.autoRun=0
         #parameters to empty the circular buffer
         self.backtime=0
