@@ -61,7 +61,6 @@ def update_values():
                         values.append(d)
         global value_map
         value_map = dict(zip(labels, values))
-        print(value_map)
     except StopIteration:
         print("why are you running htis")
         buffers.clear()
