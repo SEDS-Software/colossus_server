@@ -5,6 +5,14 @@ This gets the data from the DAQ to all the devices that are trying to see it.  I
 
 ##### CURRENTLY THE SERVER BREAKS AND HAS TO BE RESTARTED EVERY TIME GANTNER REBOOTS
 
+# setup
+
+Download this repo on both the seds laptop and raspberry pi
+
+The python main.py file will run from the seds laptop
+
+The node server within the node folder will run from the raspberry pi
+
 # run
 
 Double click the colossus server icon on the desktop or run the python file `colossus_server/main.py` from the SEDS laptop. It establishes an ftp link with the DAQ and runs a flask api where the data can be requested from.  This requires a windows laptop because it has some weird dlls.
