@@ -26,11 +26,15 @@ The reason we have two different servers, the flask one just having one client a
 # making changes
 
 Clone this github repo then make your changes
+
 `git add` all changed files
+
 `git commit -m "a message about the changes"`
+
 `git push`
 
 Then on any device that you are using the server on 
+
 `git pull`
 
 To git pull on the raspberry pi you either need to make the colossus network have an actual internet connection or you can edit wpa_suplicant.conf and add whatever wifi network you want.
