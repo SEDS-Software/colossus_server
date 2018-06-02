@@ -22,3 +22,19 @@ Then plug in the raspberry pi which will automatically start the websocket and s
 If it doesn't automatically start run `node ~/colossus_server/node/index.js` to start it up. All the startup configuration is done in `/etc/rc.local`.
 
 The reason we have two different servers, the flask one just having one client and the node websocket one everyone else is because we are doing everything we can to save cpu on the seds laptop  and don't want to deal with running a legit server on windows.
+
+# making changes
+
+Clone this github repo then make your changes
+`git add` all changed files
+`git commit -m "a message about the changes"`
+`git push`
+
+Then on any device that you are using the server on 
+`git pull`
+
+To git pull on the raspberry pi you either need to make the colossus network have an actual internet connection or you can edit wpa_suplicant.conf and add whatever wifi network you want.
+
+`sudo vim /etc/wpa_supplicant/wpa_supplicant.conf`
+
+Add a  new wifi network entry in the same form as the the rest then follow the above steps.
